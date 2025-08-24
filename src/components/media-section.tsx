@@ -1,10 +1,10 @@
 import Image from 'next/image';
 
 const mediaItems = [
-  { src: '/services.jpg', alt: 'Our services', hint: 'services image' },
-  { src: '/services-ultra.jpg', alt: 'Hospital interior', hint: 'hospital interior' },
-  { src: '/visit2.jpg', alt: 'Doctor with patient', hint: 'doctor patient' },
-  { src: '/visit.jpg', alt: 'Medical equipment', hint: 'medical equipment' },
+  { src: '/services.jpg', alt: 'Our services', hint: 'Our services' },
+  { src: '/services-ultra.jpg', alt: 'Our services', hint: 'Our services' },
+  { src: '/visit2.jpg', alt: 'Visited by High Commission of Canada', hint: 'Visited by High Commission of Canada' },
+  { src: '/visit.jpg', alt: 'Visited by High Commission of Canada', hint: 'Visited by High Commission of Canada' },
 ];
 
 export function MediaSection() {
