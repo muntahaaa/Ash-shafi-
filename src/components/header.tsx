@@ -103,17 +103,23 @@ export function Header() {
                   ))}
                   </ul>
                   <div className="border-t pt-6 mt-6 flex flex-col gap-4 text-md text-foreground/80">
-                    <a href="mailto:info@ashshafi.com" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <a href="mailto:ash.shafi.medicalcenter2025@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
                       <Mail size={16} />
-                      <span>info@ashshafi.com</span>
+                      <span>ash.shafi.medicalcenter2025@gmail.com</span>
                     </a>
-                    <a href="tel:+123456789" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <a href="tel:+8801346694684" className="flex items-center gap-2 hover:text-primary transition-colors">
                       <Phone size={16} />
-                      <span>+1 234 567 89</span>
+                      <span>+8801346694684</span>
+                    
+                    </a>
+                     <a href="tel:+8801992568186" className="flex items-center gap-2 hover:text-primary transition-colors">
+                      <Phone size={16} />
+                   
+                       <span>+8801992568186</span>
                     </a>
                     <div className="flex items-center gap-2">
                       <MapPin size={16} />
-                      <span>123 Health St, Wellness City</span>
+                      <span>2/5, 11.5 Pallabi Mirpur Dhaka-1216</span>
                     </div>
                   </div>
                 </div>
