@@ -29,12 +29,7 @@ export function HeroSection() {
               className="w-full h-auto brightness-105 group-hover:scale-105 transition-transform duration-700"
               priority
             />
-            <div className="absolute bottom-4 left-4 right-4 z-20 text-white">
-              <h3 className="text-xl md:text-2xl font-bold mb-2">Our Services</h3>
-              <p className="text-sm md:text-base opacity-90">
-                Comprehensive healthcare services for all your needs
-              </p>
-            </div>
+           
           </div>
         </div>
 
