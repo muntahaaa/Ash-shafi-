@@ -1,19 +1,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
 import React from 'react';
 
 const branches = [
   {
     name: 'Ash-Shafi Medical Center (Main Branch)',
     address: '2/5, 11.5 Pallabi Mirpur Dhaka-1216',
-    phone: '+8801302718107',
+    phone: '+8801346694684',
     mapUrl: 'https://maps.app.goo.gl/bzadCceZACr9MhCG6',
+    image: '/entrance.png',
   },
   {
     name: 'Ash-Shafi Medical Center (Second Branch)',
     address: 'House-56, Road-10, Block-D, Section-12, Pallabi, Dhaka, Bangladesh',
     phone: '+8801302718107',
     mapUrl: 'https://maps.app.goo.gl/zkqJwivz6Dnkk8ve6?g_st=aw',
+    image: '/entrance-2.jpg',
   },
 ];
 
@@ -32,12 +35,25 @@ export function BranchesSection() {
           {branches.map((branch, index) => (
             <Card key={index} className="overflow-hidden border border-primary/10 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-2 transition-all duration-500 animate-in fade-in zoom-in-95 group" style={{ animationDelay: `${index * 200}ms` }}>
               <div className="bg-primary/5 h-2 w-full group-hover:bg-primary transition-colors duration-500"></div>
+              
+              {/* Branch Image */}
+              <div className="relative h-48 w-full overflow-hidden">
+                <Image
+                  src={branch.image}
+                  alt={`${branch.name} entrance`}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <div className="bg-primary/10 p-2 rounded-full group-hover:bg-primary/20 transition-colors duration-300">
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle className="font-headline">{branch.name}</CardTitle>
+                  <CardTitle className="font-headline text-lg">{branch.name}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">

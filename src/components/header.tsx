@@ -10,7 +10,7 @@ const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'About Us' },
   { href: '#branches', label: 'Branches' },
-  { href: '#services', label: 'Services' },
+  { href: '#services', label: 'Specialists' },
   { href: '#media', label: 'Media' },
   { href: '#contact', label: 'Contact' },
 ];
@@ -46,7 +46,7 @@ export function Header() {
             <div className="bg-primary/20 p-1.5 rounded-full group-hover:bg-primary/30 transition-colors">
               <Phone size={14} className="text-primary" />
             </div>
-            <span>+8801302718107</span>
+            <span>+8801346694684, +8801992568186 </span>
           </a>
         </div>
           </div>

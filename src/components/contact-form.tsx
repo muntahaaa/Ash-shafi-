@@ -13,7 +13,8 @@ export function ContactForm() {
             For appointments and inquiries, please call us directly.
           </p>
           <div className="mt-4">
-            <p className="font-medium">Phone: +8801302718107</p>
+            <p className="font-medium">Phone: +880 1346-694684</p>
+              <p className="font-medium">Phone: +880 1992-568186 </p>
           </div>
         </div>
       </CardContent>

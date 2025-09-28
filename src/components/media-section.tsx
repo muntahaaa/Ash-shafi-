@@ -1,10 +1,10 @@
 import Image from 'next/image';
 
 const mediaItems = [
-  { src: '/services.jpg', alt: 'Our services', hint: 'Our services' },
-  { src: '/services-ultra.jpg', alt: 'Our services', hint: 'Our services' },
-  { src: '/visit2.jpg', alt: 'Visited by High Commission of Canada', hint: 'Visited by High Commission of Canada' },
-  { src: '/visit.jpg', alt: 'Visited by High Commission of Canada', hint: 'Visited by High Commission of Canada' },
+  { src: 'facilities/front.jpg', alt: 'Relax in our spacious waiting lounge before your appointment', hint: 'Relax in our spacious waiting lounge before your appointment' },
+  { src: '/services-ultra.jpg', alt: 'State-of-the-art ultrasonography for accurate diagnostics', hint: 'State-of-the-art ultrasonography for accurate diagnostics' },
+  { src: 'facilities/lab.jpg', alt: 'Comprehensive pathological facilities for precise and reliable test resultss', hint: 'Comprehensive pathological facilities for precise and reliable test results' },
+  { src: 'facilities/xray.jpg', alt: 'Advanced X-ray services for quick and accurate imaging', hint: 'Advanced X-ray services for quick and accurate imaging.' },
 ];
 
 export function MediaSection() {
