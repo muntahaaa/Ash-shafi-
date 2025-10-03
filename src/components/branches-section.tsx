@@ -73,7 +73,9 @@ export function BranchesSection() {
                 </div>
                 <div className="flex items-center gap-3 mt-4">
                   <Phone className="h-5 w-5 text-primary" />
-                  <p>{branch.phone}</p>
+                    <a href={`tel:${branch.phone}`} className="text-primary hover:underline">
+                    {branch.phone}
+                    </a>
                 </div>
               </CardContent>
             </Card>
