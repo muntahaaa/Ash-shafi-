@@ -39,7 +39,7 @@ const services = [
           Breast & Trauma Surgery Specialist<br />
         </span>
         Dhaka Medical College<br />
-        BMDC Reg. No.: A-43468
+       
       </span>
     ),
   },
@@ -85,7 +85,7 @@ const services = [
         C-CARD (National Heart Foundation)
         CCD (ICDDRB)<br />
         <span className="text-green-600 font-bold">
-          Cardiac Specialist Consultant<br />
+          Internal Medicine and Diabetes Specialist<br />
         </span>
         MD (Internal Medicine) (On Course)<br />
         Institute of Public Health Nutrition, Dhaka
@@ -130,7 +130,7 @@ const services = [
       <span>
 
         MBBS (Dhaka Medical College),
-        BCs (Health),
+        BCS (Health),
         MCPS, FCPS ENT & Head-Neck Surgery<br />
         <span className="text-green-600 font-bold">
           Specialist in Ear, Nose, and Throat Diseases;
@@ -147,11 +147,11 @@ const services = [
     title: 'Dr. Mohammad Moshiur Rahman',
     description: (
       <span >
-        MBBS, (CMC), MS (Ortho)<br />
+        MBBS, (CMC), MS (Orthopedics)<br />
         Pediatric Orthopedics and Spine Specialist & Surgeon<br />
         <span className="text-green-600 font-bold">
           Associate Professor & Unit Chief<br />
-          Orthopaedic Surgery<br />
+          Orthopaedic Surgery Unit<br />
         </span>
         Bangladesh Medical University (PG Hospital)
       </span>
@@ -169,6 +169,34 @@ const services = [
         </span>
         Bangladesh Medical University
         (PG Hospital) Dhaka
+      </span>
+    ),
+  },
+  {
+   
+    title: 'Dr. Md. Jubayer Chowdhury',
+    description: (
+      <span>
+        MBBS, CCD (BIRDEM), MPh<br />
+        <span className="text-green-600 font-bold">
+         Consultant(Public Health) and Diabetologist <br />
+        </span>
+        Lab Aid Cardiac Hospital<br />
+       
+      </span>
+    ),
+  },
+  {
+   
+    title: 'Dr. Shamshad Jahan Sumu',
+    description: (
+      <span>
+        MBBS(Dhaka), BCS(Health), CMED(BIRDEM), M.Phil.(Microbiology)<br />
+        <span className="text-green-600 font-bold">
+          Assistant Professor (Microbiology)<br />
+        </span>
+         Shaheed Suhrawardy Medical College Hospital<br />
+       
       </span>
     ),
   },
