@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.ashshafimedical.com
+
+# Sitemaps
+Sitemap: https://www.ashshafimedical.com/sitemap.xml
