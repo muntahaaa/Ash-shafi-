@@ -22,7 +22,7 @@ export function HeroSection() {
           <div className="relative rounded-2xl shadow-2xl overflow-hidden bg-black/5 border border-primary/20 group">
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
             <Image
-              src="/header/list.jpg"
+              src="/header/Ash shai cover D.jpg"
               alt="Medical Services List"
               width={800}
               height={600}

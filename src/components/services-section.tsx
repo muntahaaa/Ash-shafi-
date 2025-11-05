@@ -1,234 +1,174 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Ear, Venus, Stethoscope, Syringe, FlaskConical, Bone, Microscope, HeartPulse } from 'lucide-react';
-import Image from 'next/image';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Card, CardContent } from '@/components/ui/card';
 import React from 'react';
 
-const services = [
-  {
-   
-    title: 'Dr. Nahid Farhana Chowdhury',
-    description: (
-      <span>
-        MBBS (Dhaka)
-        FCGP, CCD (BIRDM, DMU)<br />
-        <span className="text-green-600 font-bold">
-          Consultant<br />
-        </span>
-        Family Medicine and Diabetes Specialist<br />
-        Former Clinic In-Charge: Surjer Hashi Clinic
-      </span>
-    ),
-    // icon: (
-    //   <Image
-    //     src="/doctors/Nahid.jpg"
-    //     alt="Dr. Nahid Farhana Chowdhury"
-    //     width={80}
-    //     height={80}
-    //     className="rounded-full mx-auto mb-4 object-cover"
-    //   />
-    // ),
-  },
-  {
-   
-    title: 'Dr. Mostak Ahmed',
-    description: (
-      <span>
-        MBBS, FCPS (Surgery)<br />
-        <span className="text-green-600 font-bold">
-          General Laparoscopic, Hernia,
-          Breast & Trauma Surgery Specialist<br />
-        </span>
-        Dhaka Medical College<br />
-       
-      </span>
-    ),
-  },
-  {
+interface Doctor {
+  name: string;
+  description: string;
+  time?: string;
+}
 
-    title: 'Dr. Md. Masud Rana',
-    description: (
-      <span>
-        MBBS (Dhaka), PGT (Child Medicine), PGPN <br />
-        Postgraduate Certificate in Pediatric Nutrition<br />
-        CCCD (Heart Foundation), CCD (BIRDEM)<br />
-        <span className="text-green-600 font-bold">
-          (Experience in Child and adult Medicine)<br />
-          Ex Senior Medical Officer<br />
+// Doctor data grouped by specialization
+const doctors: Record<string, Doctor[]> = {
+  'পরিপাকতন্ত্র ও লিভার রোগ বিশেষজ্ঞ': [
+    {
+      name: 'ডা. আল মাহমুদ এ্যাপোলো',
+      description: 'এমবিবিএস (ডিএমসি), বিসিএস (স্বাস্থ্য) এমডি (গ্যাস্ট্রোএন্টোরোলজী) পরিপাকতন্ত্র ও লিভার রোগ বিশেষজ্ঞ কনসালটেন্ট, গ্যাস্ট্রোএন্টোরোলজী\nজাতীয় গ্যাস্ট্রোলিভার ইনস্টিটিউট ও হাসপাতাল, মহাখালী, ঢাকা',
+      time: 'রাত ৮টা থেকে রাত ৯:৩০মি: (রবি, মঙ্গল ও বৃহস্পতিবার)',
+    },
+  ],
+  'প্রসূতি ও স্ত্রীরোগ বিশেষজ্ঞ': [
+    {
+      name: 'ডা. ফারহানা মিথিলা',
+      description: 'এমবিবিএস, এফসিপিএস প্রসূতি ও স্ত্রীরোগ বিশেষজ্ঞ ল্যাপারোস্কোপিক সার্জন বন্ধ্যাত্ব বিষয়ে উচ্চতর প্রশিক্ষণপ্রাপ্ত\nঢাকা মেডিকেল কলেজ হাসপাতাল',
+      time: 'সন্ধ্যা ৭টা থেকে রাত ৯টা (শনি, রবি, মঙ্গল ও বৃহস্পতিবার)',
+    },
+    {
+      name: 'ডা. মোরশেদা পারভীন',
+      description: 'এমবিবিএস, এফসিপিএস (অবস্ এন্ড গাইনী) প্রসূতি ও স্ত্রীরোগ এবং বন্ধ্যাত্বরোগ বিশেষজ্ঞ বিএমডিসি রেজি: নং এ- ৪২৯০৮',
+      time: 'সকাল ১০টা-দুপুর ১২টা (রবি, মঙ্গল ও বৃহস্পতিবার)',
+    },
+    {
+      name: 'ডা. লুসিয়াত জাহান',
+      description: 'এমবিবিএস (আরইউ), ডিএমইউ, সিএমইউ প্রাক্তন-ক্লিনিক ম্যানেজার (ইউপিএইচসিএসডিপি-২) প্রাক্তন-মেডিকেল অফিসার\nসূর্যের হাসি ক্লিনিক',
+      time: 'সকাল ১০টা-দুপুর ১২টা (শনি, সোম ও বুধবার)',
+    },
+  ],
+  'সনোলজিস্ট': [
+    {
+      name: 'ডা. জিনিয়া আফরিন খান',
+      description: 'এমবিবিএস (ঢাকা), সিসিডি (বারডেম), এডিএমইউ সহকারী অধ্যাপক\nন্যাশনাল ইনস্টিটিউট অব নিউক্লিয়ার মেডিসিন এন্ড এ্যালাইড সাইন্সেস বাংলাদেশ পরমাণু শক্তি কমিশন।',
+      time: 'রাত ৮টা থেকে রাত ১০টা (শনি, সোম ও বৃহস্পতিবার)',
+    },
+  ],
+  'মেডিসিন ও ডায়াবেটিস বিশেষজ্ঞ': [
+    {
+      name: 'ডা. নাহিদ ফারহানা চৌধুরী',
+      description: 'এমবিবিএস (ঢাকা) এফসিজিপি, সিসিডি (বারডেম), ডিএমইউ কনসালটেন্ট\nফ্যামিলি মেডিসিন ও ডায়াবেটিস বিশেষজ্ঞ প্রাক্তন ক্লিনিক ইনচার্জ, সূর্যের হাসি ক্লিনিক',
+      time: '',
+    },
+    {
+      name: 'ডা. মোঃ তানজীর আনোয়ার',
+      description: 'এমবিবিএস, বিসিএস (স্বাস্থ্য), এফসিজিপি সিসিডি (বারডেম), সি-কার্ড (ন্যাশনাল হার্ট ফাউন্ডেশন) সিডিডি (আইসিডিডিআরবি) এমডি (ইন্টারনাল মেডিসিন) (অন কোর্স) জনস্বাস্থ্য পুষ্টি প্রতিষ্ঠান, ঢাকা',
+      time: 'বিকেল ৫টা থেকে সন্ধ্যা ৭টা (শুক্রবার বন্ধ)',
+    },
+    {
+      name: 'ডা. মুহম্মদ যুবায়ের চৌধুরী',
+      description: 'এমবিবিএস, সিসিডি (বারডেম), এমপিএইচ কনসালটেন্ট পাবলিক হেলথ্ এবং ডায়াবেটোলজিস্ট ল্যাব এইড কার্ডিয়াক হাসপাতাল',
+      time: 'সকাল ১০টা থেকে দুপুর ১টা (শনি, রবি, মঙ্গল ও বৃহস্পতিবার)',
+    },
+  ],
 
-        </span>
-        SMO Institute of Child Health (ICH) & Shishu Foundation Hospital<br />
-      </span>
-    ),
-  },
-  {
- 
-    title: 'Dr. Al Mahmood Appolo',
-    description: (
-      <span>
+  'জেনারেল, ল্যাপারোস্কোপ, হার্নিয়া, ব্রেস্ট এন্ড ট্রমা সার্জারী বিশেষজ্ঞ': [
+    {
+      name: 'ডা. মোস্তাক আহমেদ',
+      description: 'এমবিবিএস, এফসিপিএস (সার্জারী) জেনারেল, ল্যাপারোস্কোপ, হার্নিয়া, ব্রেস্ট এন্ড ট্রমা সার্জারী বিশেষজ্ঞ ঢাকা মেডিকেল কলেজ হাসপাতাল',
+      time: 'সন্ধ্যা ৬টা থেকে রাত ৮টা (শনি, রবি, মঙ্গল ও বুধবার)',
+    },
+  ],
+  'হৃদরোগ ও মেডিসিন বিশেষজ্ঞ': [
+    {
+      name: 'ডা.মাহমুদ হাসান',
+      description: 'এমবিবিএস, বিসিএস (স্বাস্থ্য) এমডি কার্ডিওলজি (অন কোর্স), পিজিটি (মেডিসিন) জাতীয় হৃদরোগ ইনস্টিটিউট, ঢাকা। বিএমডিসি রেজি: নং এ-১০৯৫২৮',
+      time: 'সন্ধ্যা ৬টা থেকে রাত ৮টা (শনি, রবি, মঙ্গল ও বুধবার)',
+    },
+     {
+      name: 'ডা.মোহাম্মদ ইব্রাহীম আদহাম',
+      description: 'এমবিবিএস (ডিএমসি), এমএস রেসিডেন্ট (সিভিটিএস, এনএইচএফএইচ এন্ড আরআই) এফসিপিএস পার্ট-২ ট্রেইনি (সার্জারী), এমআরসিএস ওএসসিই (ইডেনবার্গ), সিসিডি (বারডেম) বিশেষ প্রশিক্ষণপ্রাপ্ত ইকো, ফুটকেয়ার ও ইনজুরি ব্যবস্থাপনা প্রাক্তন এসআরএমও, ল্যাব এইড কার্ডিয়াক হাসপাতাল ',
+      time: 'বিকেল ৪টা-রাত ৯টা (রবি, মঙ্গল, বৃহস্পতি ও শুক্রবার)',
+    },
+  ],
+    'নবজাতক, শিশু ও কিশোর রোগ বিশেষজ্ঞ': [
+    {
+      name: 'ডা.সাদিয়া তাবাস্সুম',
+      description: 'এমবিবিএস, বিসিএস (স্বাস্থ্য) এফসিপিএস (পেডিয়াট্রিক) নবজাতক, শিশু ও কিশোর রোগ বিশেষজ্ঞ ,কনসালটেন্ট (শিশু বিভাগ),শহীদ সোহরাওয়ার্দী মেডিকেল কলেজ হাসপাতাল',
+      time: ''
+    },
+     {
+      name: 'ডা. মোহাম্মদ মাসুদ রানা',
+      description: 'এমবিবিএস (ঢাকা), পিজিটি (চাইল্ড মেডিসিন) পিজিপিএন পোষ্ট গ্রাজুয়েশন ইন পেডিয়াট্রিক নিউট্রিশন সিসিডি (হার্ট ফাউন্ডেশন), সিসিডি (বারডেম) শিশু চিকিৎসক ও জেনারেল,ফিজিশিয়ান প্রাক্তন সিনিয়র মেডিকেল অফিসার ইনস্টিটিউট অব চাইল্ড হেলথ্ এন্ড শিশু ফাউন্ডেশন হাসপাতাল',
+      time: 'সকাল ৯টা থেকে দুপুর ১১টা (শুক্রবার বন্ধ)',
+    },
+  ],
+    'অর্থোপেডিকস, ট্রমা ও স্পাইন বিশেষজ্ঞ ও সার্জন': [
+    {
+      name: 'ডা.নিবরাস ওয়াদুদ খান',
+      description: 'এমবিবিএস (চট্টগ্রাম), এফসিপিএস পার্ট-১ অর্থোপেডিক সার্জারি, এমআরসিএস পার্ট-১ (ইংল্যান্ড) সার্জারী বিভাগ, ঢাকা মেডিকেল কলেজ হাসপাতাল। বিএমডিসি রেজি: নং এ-১২০৪৭৯',
+      time: 'রাত ৮টা থেকে রাত ১০টা (শনি, সোম ও বুধবার)',
+    },
+  ],
+     'নাক কান গলা রোগ বিশেষজ্ঞ': [
+    {
+      name: 'ডা.রাহাত তানভীর আনোয়ার',
+      description: 'এমবিবিএস (ডিএমসি), বিসিএস (স্বাস্থ্য), এমসিপিএস, এফসিপিএস নাক কান গলা রোগ বিশেষজ্ঞ, মাইক্রোস্কোপিক, এন্ডোস্কোপিক ও হেড নেক সার্জন, জাতীয় নাক কান গলা ইনস্টিটিউট, তেজগাঁও, ঢাকা। নাকের এন্ডোস্কোপিক সার্জারিতে উচ্চতর প্রশিক্ষণপ্রাপ্ত (চালী জেনারেল হাসপাতাল, সিঙ্গাপুর) কানের মাইক্রোসকপিক সার্জারিতে উচ্চতর প্রশিক্ষণপ্রাপ্ত',
+      time: 'বিকেল ৫:৩০মিঃ থেকে সন্ধ্যা ৭:৩০মি (শনি, সোম ও বুধবার)',
+    },
+  ],
+    'চর্ম, যৌন ও এলার্জি রোগ বিশেষজ্ঞ': [
+    {
+      name: 'ডা.বাবু রাম মন্ডল',
+      description: 'এমবিবিএস (ডিএমসি), বিসিএস (স্বাস্থ্য) এমডি (ডার্মাটোলজী) কোর্স বাংলাদেশ মেডিকেল বিশ্ববিদ্যালয়। (পিজি হাসপাতাল)',
+      time: 'বিকেল ৫টা থেকে রাত ৮টা (শুক্রবার বন্ধ)',
+    },
+  ],
+   'মাইক্রোবায়োলজিস্ট': [
+    {
+      name: 'ডা.শামশাদ জাহান সুমু ',
+      description: 'এমবিবিএস (ঢাকা), বিসিএস (স্বাস্থ্য ) সিএমইডি (বারডেম) এম.ফিল (মাইক্রোবায়োলজি) সহযোগী অধ্যাপক (মাইক্রোবায়োলজি) শহীদ সোহরাওয়ার্দী মেডিকেল কলেজ হাসপাতাল',
+      time: '',
+    },
+  ],
+  
+};
 
-        MBBS (DMC),
-        BCS (Health), MD (Gastroenterology)<br />
-        <span className="text-green-600 font-bold">
-          Gastroenterology & Liver Disease Specialist Consultant, Gastroenterology<br />
-        </span>
-        National Gastroliver Institute & Hospital
-      </span>
-    ),
-  },
-  {
- 
-    title: 'Dr. Md. Tanzir Anwar',
-    description: (
-      <span>
+const ServicesSection = () => {
+  const specialties = Object.keys(doctors);
 
-        MBBS, BCS (Health), FCGP, CCD (BIRDEM)
-        C-CARD (National Heart Foundation)
-        CCD (ICDDRB)<br />
-        <span className="text-green-600 font-bold">
-          Internal Medicine and Diabetes Specialist<br />
-        </span>
-        MD (Internal Medicine) (On Course)<br />
-        Institute of Public Health Nutrition, Dhaka
-      </span>
-    ),
-  },
-  {
- 
-    title: 'Dr. Sadia Tabassum',
-    description: (
-      <span>
-
-        MBBS, BCS (Health),
-        FCPS (Pediatrics)<br />
-        <span className="text-green-600 font-bold">
-          Newborn & Child Specialist
-          Consultant (Pediatrics Department)<br />
-        </span>
-        Shaheed Suhrawardy Medical College Hospital
-      </span>
-    ),
-  },
-  {
- 
-    title: 'Dr. Farhana Mithila',
-    description: (
-      <span>
-        MBBS, FCPS<br />
-        Gynae & Obs Specialist<br />
-        <span className="text-green-600 font-bold">
-          Laparoscopic Surgeon<br />
-        </span>
-        Higher Training in Infertility<br />
-        Dhaka Medical College & Hospital
-      </span>
-    ),
-  },
-  {
-
-    title: 'Dr. Rahat Tanvir Anwar',
-    description: (
-      <span>
-
-        MBBS (Dhaka Medical College),
-        BCS (Health),
-        MCPS, FCPS ENT & Head-Neck Surgery<br />
-        <span className="text-green-600 font-bold">
-          Specialist in Ear, Nose, and Throat Diseases;
-          Microscopic, Endoscopic &amp; Head-Neck Surgeon<br />
-          National Institute of ENT, Tejgaon, Dhaka<br />
-        </span>
-        Received advanced training in Endoscopic Nasal Surgery (Changi General Hospital, Singapore)<br />
-        Received advanced training in Microscopic Ear Surgery
-      </span>
-    ),
-  },
-  {
- 
-    title: 'Dr. Mohammad Moshiur Rahman',
-    description: (
-      <span >
-        MBBS, (CMC), MS (Orthopedics)<br />
-        Pediatric Orthopedics and Spine Specialist & Surgeon<br />
-        <span className="text-green-600 font-bold">
-          Associate Professor & Unit Chief<br />
-          Orthopaedic Surgery Unit<br />
-        </span>
-        Bangladesh Medical University (PG Hospital)
-      </span>
-    ),
-  },
-  {
- 
-    title: 'Dr. Babu Ram Mandal',
-    description: (
-      <span>
-        MBBS (DMC), BCS (Health)<br />
-        MD (Dermatology) Course<br />
-        <span className="text-green-600 font-bold">
-          Dermatology Specialist<br />
-        </span>
-        Bangladesh Medical University
-        (PG Hospital) Dhaka
-      </span>
-    ),
-  },
-  {
-   
-    title: 'Dr. Md. Jubayer Chowdhury',
-    description: (
-      <span>
-        MBBS, CCD (BIRDEM), MPh<br />
-        <span className="text-green-600 font-bold">
-         Consultant(Public Health) and Diabetologist <br />
-        </span>
-        Lab Aid Cardiac Hospital<br />
-       
-      </span>
-    ),
-  },
-  {
-   
-    title: 'Dr. Shamshad Jahan Sumu',
-    description: (
-      <span>
-        MBBS(Dhaka), BCS(Health), CMED(BIRDEM), M.Phil.(Microbiology)<br />
-        <span className="text-green-600 font-bold">
-          Assistant Professor (Microbiology)<br />
-        </span>
-         Shaheed Suhrawardy Medical College Hospital<br />
-       
-      </span>
-    ),
-  },
-];
-
-export function ServicesSection() {
   return (
-    <section id="services" className="py-24 bg-gradient-to-br from-primary/5 to-background">
+    <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-          <span className="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium inline-block mb-3">Our Specialties</span>
-          <h2 className="text-4xl md:text-5xl font-bold font-headline text-primary mb-4">Our Services and Specialists</h2>
-          <p className="text-lg text-foreground/80 mt-4 max-w-3xl mx-auto">
-            We offer a wide range of medical services to meet the needs of our patients, using the latest technology and treatments.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <Card key={index} className="text-center border border-primary/10 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-2 transition-all duration-500 animate-in fade-in zoom-in-95 group overflow-hidden" style={{ animationDelay: `${index * 100}ms` }}>
-              <CardHeader className="pb-2">
-               {/* <div className="flex items-center justify-center mb-4 bg-primary/5 w-20 h-20 rounded-full mx-auto group-hover:bg-primary/20 transition-colors duration-300">
-                  {service.icon}
-                </div> */}
-                <CardTitle className="font-headline mt-4 group-hover:text-primary transition-colors duration-300">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-foreground/80">{service.description}</p>
-              </CardContent>
-            </Card>
+        <h2 className="text-3xl font-bold text-center mb-8">আমাদের বিশেষজ্ঞ ডাক্তারগণ</h2>
+        <Accordion type="single" collapsible className="w-full max-w-4xl mx-auto space-y-4">
+          {specialties.map((specialty, index) => (
+            <AccordionItem key={specialty} value={`item-${index}`} className="bg-white rounded-lg shadow-sm">
+              <AccordionTrigger className="px-6 py-4 text-lg font-semibold text-left hover:text-green-600">
+                {specialty}
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-6">
+                <div className="space-y-4">
+                  {doctors[specialty].map((doctor, dIndex) => (
+                    <Card key={dIndex} className="border-l-4 border-green-500">
+                      <CardContent className="p-4">
+                        <h3 className="text-xl font-semibold mb-1">{doctor.name}</h3>
+                        <p className="text-gray-700 whitespace-pre-line mb-2">{doctor.description}</p>
+                        {doctor.time && (
+                          <p className="text-green-600 font-medium">সময়: {doctor.time}</p>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
           ))}
-        </div>
+        </Accordion>
+        <div className="mt-8 flex justify-center">
+      <div className="relative">
+        <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-green-300 via-green-400 to-green-500 opacity-60 blur-xl animate-pulse" />
+        <a
+          href="https://res.cloudinary.com/dz8e6wjnx/image/upload/v1762366861/lab_test_fee_page-0001_kqtssu.jpg"
+          role="button"
+          aria-label="অ্যাপয়েন্টমেন্ট বুক করুন"
+          className="relative z-10 inline-block px-8 py-3 bg-green-600 text-white font-semibold rounded-full shadow-lg transform transition duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
+        >
+          ল্যাব টেস্ট এবং ফি সম্পর্কে বিস্তারিত জানতে এখানে ক্লিক করুন
+        </a>
+      </div>
+    </div>
       </div>
     </section>
+    
   );
-}
+};
+
+export default ServicesSection;

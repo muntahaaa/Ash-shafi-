@@ -74,17 +74,90 @@ export function AboutSection() {
         </div>
         
         <div className="flex flex-col lg:flex-row gap-8 items-start">
-          {/* Large Image Section */}
-          <div className="w-full lg:w-4/6 animate-in fade-in slide-in-from-left-8 duration-700">
+            {/* Large Image Section */}
+            <div className="w-full lg:w-4/6 animate-in fade-in slide-in-from-left-8 duration-100">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-32 h-32 bg-primary/20 rounded-full -z-10"></div>
               <div className="absolute -bottom-4 -right-4 w-40 h-40 bg-primary/10 rounded-full -z-10"></div>
               {/* Large slideshow */}
               <div className="relative w-full h-[500px] md:h-[650px] lg:h-[750px] overflow-hidden rounded-2xl shadow-2xl border border-primary/10">
-                <SlideshowImages />
+              {(() => {
+                function AutoSlideshowImages() {
+                const images = [
+                  
+                  { src: '/header/location.jpg', alt: 'Medical Center Location' },
+                  { src: '/slideshow/front.jpg', alt: 'Medical Center Location' },
+                  { src: '/slideshow/lab.jpg', alt: 'Medical Center Location' },
+                  { src: '/slideshow/xray.jpg', alt: 'Medical Center Location' },
+                  { src: '/slideshow/reception-desk.jpg', alt: 'Medical Center Location' }
+                ];
+                const [index, setIndex] = React.useState(0);
+
+                React.useEffect(() => {
+                  const id = setInterval(() => {
+                  setIndex((prev) => (prev + 1) % images.length);
+                  }, 4000); // advance every 2 seconds
+                  return () => clearInterval(id);
+                }, [images.length]);
+
+                const handleNext = () => {
+                  setIndex((prev) => (prev + 1) % images.length);
+                };
+
+                const handlePrev = () => {
+                  setIndex((prev) => (prev - 1 + images.length) % images.length);
+                };
+
+                return (
+                  <div className="relative w-full h-full group">
+                  <Image
+                    src={images[index].src}
+                    alt={images[index].alt}
+                    fill
+                    style={{ objectFit: 'contain', transition: 'opacity 0.5s' }}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
+
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={handlePrev}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-10"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft size={24} />
+                  </button>
+
+                  <button
+                    onClick={handleNext}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-10"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight size={24} />
+                  </button>
+
+                  {/* Image Indicators */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                    {images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setIndex(i)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      i === index ? 'bg-primary' : 'bg-white/60 hover:bg-white/80'
+                      }`}
+                      aria-label={`Go to image ${i + 1}`}
+                    />
+                    ))}
+                  </div>
+                  </div>
+                );
+                }
+
+                return <AutoSlideshowImages />;
+              })()}
               </div>
             </div>
-          </div>
+            </div>
 
           {/* Info Section */}
           <div className="w-full lg:w-2/6 animate-in fade-in slide-in-from-right-8 duration-700 delay-200">

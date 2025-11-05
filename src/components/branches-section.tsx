@@ -8,7 +8,7 @@ const branches = [
     name: 'Ash-Shafi Medical Center (Main Branch)',
     address: '2/5, 11.5 Pallabi Mirpur Dhaka-1216',
     phone: '+8801346694684',
-    mapUrl: 'https://maps.app.goo.gl/bzadCceZACr9MhCG6',
+    mapUrl: 'https://maps.app.goo.gl/xirgRysQgsHEyMkCA',
     image: '/entrance.png',
   },
   {
