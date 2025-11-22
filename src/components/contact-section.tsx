@@ -25,6 +25,17 @@ export function ContactSection() {
                 <div>
                   <h4 className="font-semibold">Address</h4>
                   <p>2/5, 11.5 Pallabi, Mirpur, Dhaka-1216</p>
+                  <p>
+                    Google map location:{' '}
+                    <a
+                      href="https://maps.app.goo.gl/szvwv5w6SSLtaAJx7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-black underline"
+                    >
+                      https://maps.app.goo.gl/szvwv5w6SSLtaAJx7
+                    </a>
+                  </p>
                 </div>
               </div>
                 <div className="flex items-start gap-4">

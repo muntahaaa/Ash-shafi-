@@ -32,8 +32,11 @@ export const metadata: Metadata = {
   },
   
   icons: {
-    icon: '/favicon.ico', // optional - depends on your favicon path
-  },
+  icon: '/Logo[2].png',
+  shortcut: '/Logo[2].png',
+  apple: '/Logo[2].png',
+},
+
 }
 
 // ===== Page Component =====
