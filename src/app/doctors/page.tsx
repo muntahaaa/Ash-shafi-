@@ -292,6 +292,31 @@ export default function DoctorsPage() {
           </div>
         </div>
       </section>
+      
+      <PackagesSection />
     </div>
+
+  );
+}
+
+
+function PackagesSection() {
+  return (
+    <section className="py-8 sm:py-12 bg-white">
+      <div className="container mx-auto px-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
+          আমাদের প্যাকেজসমূহ
+        </h2>
+        <div className="flex justify-center">
+          <Image
+            src="/packages.png"
+            alt="আমাদের প্যাকেজসমূহ"
+            width={800}
+            height={800}
+            className="rounded-lg shadow-lg w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl h-auto"
+          />
+        </div>
+      </div>
+    </section>
   );
 }
