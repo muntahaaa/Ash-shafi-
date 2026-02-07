@@ -34,12 +34,27 @@ const doctors: Record<string, Doctor[]> = {
       description: 'এমবিবিএস (আরইউ), ডিএমইউ, সিএমইউ, প্রাক্তন-ক্লিনিক ম্যানেজার (ইউপিএইচসিএসডিপি-২)\n(আরবান প্রাইমারী হেলথ কেয়ার সার্ভিসেস ডেলিভারি প্রোজেক্ট-২)\nপ্রাক্তন-মেডিকেল অফিসার\nসূর্যের হাসি ক্লিনিক',
       time: 'সকাল ১০টা-দুপুর ১২টা (শনি, সোম ও বুধবার)',
     },
+    {
+      name: 'ডা. ফারহানা ফেরদৌস',
+      description: 'এমবিবিএস, বিসিএস (স্বাস্থ্য), ডিজিও (গাইনি-অবস্‌), এফসিপিএস (গাইনি-অবস্‌, এফপি)\nশহীদ সোহরাওয়ার্দী মেডিকেল কলেজ ও হাসপাতাল,শের-ই-বাংলা নগর, ঢাকা।',
+      time: '',
+    },
   ],
   'সনোলজিস্ট': [
     {
       name: 'ডা. জিনিয়া আফরিন খান',
-      description: 'এমবিবিএস (ঢাকা), সিসিডি (বারডেম), এডিএমইউ \nসহকারী অধ্যাপক, ন্যাশনাল ইনস্টিটিউট অব নিউক্লিয়ার মেডিসিন এন্ড এ্যালাইড সাইন্সেস, বাংলাদেশ পরমাণু শক্তি কমিশন।',
+      description: 'এমবিবিএস (ঢাকা), সিসিডি (বারডেম), ডিএমইডি \nসহকারী অধ্যাপক, ন্যাশনাল ইনস্টিটিউট অব নিউক্লিয়ার মেডিসিন এন্ড এ্যালাইড সাইন্সেস, বাংলাদেশ পরমাণু শক্তি কমিশন।',
       time: 'রাত ৮টা থেকে রাত ১০টা (শনি, সোম ও বৃহস্পতিবার)',
+    },
+      {
+      name: 'ডা.ফারজানা রহমান',
+      description: 'এমবিবিএস, ডিএমইডি, ডিডিএমইডি, সিসিডি, কালার ডপলার, ফিটাল এনোমালি ও টিএফএ (প্রশিক্ষণপ্রাপ্ত) কনসালট্যান্ট সোনোলজিস্ট, আশ-শাফি মেডিকেল সেন্টার',
+      time: '',
+    },
+      {
+      name: 'ডা. শাহানা আক্তার',
+      description: 'এমবিবিএস, ডিডিএমইডি, এমডিএমইডি, সিসিডি, অ্যাডভান্সড ট্রেনিং অন এনোমালি স্ক্যান টিএফএ, ব্রেস্ট, থাইরয়েড ও এমএসকে, কনসালট্যান্ট সোনোলজিস্ট, আশ-শাফি মেডিকেল সেন্টার',
+      time: '',
     },
   ],
   'মেডিসিন ও ডায়াবেটিস বিশেষজ্ঞ': [
@@ -65,6 +80,11 @@ const doctors: Record<string, Doctor[]> = {
       name: 'ডা. মোস্তাক আহমেদ',
       description: 'এমবিবিএস, এফসিপিএস (সার্জারী) \nজেনারেল, ল্যাপারোস্কোপ, হার্নিয়া, ব্রেস্ট এন্ড ট্রমা সার্জারী বিশেষজ্ঞ,ঢাকা মেডিকেল কলেজ হাসপাতাল',
       time: 'সন্ধ্যা ৭টা থেকে রাত ৯টা (রবি, মঙ্গল ও বৃহস্পতিবার)',
+    },
+    {
+      name: 'ডা. মোঃ মাহমুদুল হাসান (মিঠু)',
+      description: 'এমবিবিএস, বিসিএস (স্বাস্থ্য), এফসিপিএস (সার্জারি), এফসিপিএস (সার্জিক্যাল অনকোলজি) কোর্স\nকনসালট্যান্ট (সার্জারি),জাতীয় ক্যান্সার গবেষণা ইনস্টিটিউট ও হাসপাতাল,মহাখালী, ঢাকা',
+      time: '',
     },
   ],
   'হৃদরোগ ও মেডিসিন বিশেষজ্ঞ': [
@@ -95,6 +115,12 @@ const doctors: Record<string, Doctor[]> = {
       description: 'এমবিবিএস (ডিএমসি) ডিসিএইচ (Dublin), আরসিপিএন্ডএস (Ireland), এমডি (শিশু-বাংলাদেশ শিশু ইনস্টিটিউট)\n অধ্যাপক ও বিভাগীয় প্রধান, শিশু বিভাগ, ঢাকা শিশু হাসপাতাল\n প্রিন্সিপ্যাল (প্রাক্তন) আশিয়ান মেডিকেল কলেজ\n কন্সালটেন্ট (প্রাক্তন) ইউনাইটেড হাসপাতাল',
       time: 'সন্ধ্যা ৬টা থেকে ৮টা পর্যন্ত (রবি, মঙ্গল, ও বৃহস্পতিবার)'
     },
+      {
+      name: 'ডা. নাজমা খাতুন',
+      description: 'এমবিবিএস (ময়মনসিংহ মেডিকেল কলেজ), ডিসিএইচ (বি.এস.এম.এম.ইউ), এফসিপিএস (এফপি)\nচাইল্ড স্পেশালিস্ট, কনসালট্যান্ট, ডা. এম আর খান শিশু হাসপাতাল ও আইসিএইচ মিরপুর, ঢাকা',
+      time: ''
+    },
+    
   ],
     'অর্থোপেডিকস, ট্রমা ও স্পাইন বিশেষজ্ঞ ও সার্জন': [
     {
@@ -131,6 +157,20 @@ const doctors: Record<string, Doctor[]> = {
       time: '',
     },
   ],
+  'ইউরোলজি ও মেডিসিন বিশেষজ্ঞ': [
+    {
+      name: 'ডা. মাহমুদ হাসান',
+      description: 'এমবিবিএস, বিসিএস (স্বাস্থ্য)\nএমডি কার্ডিওলজি (অন কোর্স), পিজিটি (মেডিসিন)\nজাতীয় ইউরোলজি ইনস্টিটিউট, ঢাকা।',
+      time: '',
+    },
+  ],
+  'নিউরোমেডিসিন': [
+    {
+      name: 'ডা. আনামিকা মারজিয়া মৌসুমী',
+      description: 'এমবিবিএস (ঢাকা), বিসিএস (স্বাস্থ্য)\nপিজিটি (মেডিসিন)\nএফসিপিএস (নিউরোমেডিসিন, এফপি)\nন্যাশনাল ইনস্টিটিউট অব নিউরোসায়েন্সেস ও হাসপাতাল।',
+      time: '',
+    },
+  ],
   
 };
 
@@ -139,56 +179,56 @@ export default function DoctorsPage() {
 
   return (
     <div>
+      
         
-          
-    <div className="pt-1 pb-1  flex items-center justify-center gap-2 bg-green-600 text-white">
-       <Image src="Logo[2].png" alt="Ash Shafi Logo" width={70} height={70} />
-        <span className="text-large font-extrabold">ডাক্তার এর সিরিয়াল দিতে কল করুন : </span>
-        <div className="flex items-center gap-3">
-          <a
-            href="tel:+8801346694684"
-            className="flex items-center gap-2 hover:text-green-200 transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 5a2 2 0 012-2h2.5a1 1 0 01.95.68l1 3a1 1 0 01-.25 1.02L8.2 9.8a11 11 0 005 5l1.1-1.05a1 1 0 011.02-.25l3 .95A1 1 0 0121 16.5V19a2 2 0 01-2 2A16 16 0 013 5z"
-              />
-            </svg>
-            <span>+8801346694684</span>
-          </a>
+    <div className="pt-1 pb-1 flex flex-col sm:flex-row items-center justify-center gap-2 bg-green-600 text-white px-4">
+       <Image src="Logo[2].png" alt="Ash Shafi Logo" width={70} height={70} className="w-12 h-12 sm:w-[70px] sm:h-[70px]" />
+      <span className="text-sm sm:text-base font-extrabold text-center">ডাক্তার এর সিরিয়াল দিতে কল করুন : </span>
+      <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+        <a
+        href="tel:+8801346694684"
+        className="flex items-center gap-2 hover:text-green-200 transition-colors text-sm sm:text-base"
+        >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-4 h-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+          aria-hidden="true"
+        >
+          <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 5a2 2 0 012-2h2.5a1 1 0 01.95.68l1 3a1 1 0 01-.25 1.02L8.2 9.8a11 11 0 005 5l1.1-1.05a1 1 0 011.02-.25l3 .95A1 1 0 0121 16.5V19a2 2 0 01-2 2A16 16 0 013 5z"
+          />
+        </svg>
+        <span>+8801346694684</span>
+        </a>
 
-          <a
-            href="tel:+8801992568186"
-            className="flex items-center gap-2 hover:text-green-200 transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 5a2 2 0 012-2h2.5a1 1 0 01.95.68l1 3a1 1 0 01-.25 1.02L8.2 9.8a11 11 0 005 5l1.1-1.05a1 1 0 011.02-.25l3 .95A1 1 0 0121 16.5V19a2 2 0 01-2 2A16 16 0 013 5z"
-              />
-            </svg>
-            <span>+8801992568186</span>
-          </a>
-        </div>
+        <a
+        href="tel:+8801992568186"
+        className="flex items-center gap-2 hover:text-green-200 transition-colors text-sm sm:text-base"
+        >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-4 h-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+          aria-hidden="true"
+        >
+          <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 5a2 2 0 012-2h2.5a1 1 0 01.95.68l1 3a1 1 0 01-.25 1.02L8.2 9.8a11 11 0 005 5l1.1-1.05a1 1 0 011.02-.25l3 .95A1 1 0 0121 16.5V19a2 2 0 01-2 2A16 16 0 013 5z"
+          />
+        </svg>
+        <span>+8801992568186</span>
+        </a>
+      </div>
       </div>
 
       <section className="py-12 bg-gray-50">
