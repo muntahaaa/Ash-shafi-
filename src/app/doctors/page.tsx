@@ -1,6 +1,8 @@
+"use client";
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent } from '@/components/ui/card';
-import React from 'react';
+import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import type { Doctor } from '@/types/doctor';
 
@@ -138,7 +140,7 @@ export const doctors: Record<string, Doctor[]> = {
     {
       name: 'ডা.মোঃ মাজহারুল হক',
       description: 'এমবিবিএস (সিলেট মেডিকেল কলেজ) ডিসিএইচ (ঢাকা শিশু হাসপাতাল, শ্যামলী) পিজিপিএন (বোষ্টন ইউনিভার্সিটি) ফেলোশিপ, শিশু পুষ্টি (আমেরিকা)\nকনসালটেন্ট, পেডিয়াট্রিক্স ও এনআইসিইউ, ওজিএসবি হাসপাতাল\nকনসালটেন্ট, আশ্-শাফি মেডিকেল সেন্টার',
-      time: 'রাত ৮টা থেকে ১০টা পর্যন্ত (শনি, সোম ও বুধবার)'
+      time: 'রাত ৮টা থেকে ১০টা পর্যন্ত (শনি, সোম ও বুধবার)',
     },
      {
       name: 'ডা. মোহাম্মদ মাসুদ রানা',
@@ -209,100 +211,80 @@ export const doctors: Record<string, Doctor[]> = {
   
 };
 
+const PATHOLOGICAL_TESTS = [
+  { name: "TC, DC, HB% ESR, SGPT / Alkaline Phosphatase / Urine", price: "400" },
+  { name: "Calcium Urinary (Potassium, Sodium, Chloride) / Bilirubin D/I", price: "450" },
+  { name: "CEA / CA-19.9 / CA-125 / CA-15.3 / AFP / PSA / Free PSA / B-HCG", price: "1400" },
+  { name: "LFT / Aldolase / FDP / MACR / Electrolytes", price: "1000" },
+  { name: "BT / CT / Blood Group / HB% / ESR", price: "200" },
+  { name: "Lipid Profile / Lactate / Lipase / CPK / Fluid for ADA", price: "1200" },
+  { name: "Amylase / Magnesium / Ammonia / Lithium / STP AG / eGFR", price: "1200" },
+  { name: "GFR / Aldolose / Osmolality / Copper / Ceruloplajmin", price: "1200" },
+  { name: "Ferritin", price: "1300" },
+  { name: "Anti HBs / HBeAg / HCV / HEV IgM / HAV IgM", price: "1400" },
+  { name: "T3 / T4 / TSH / Bence-Jones Protein / P-Time", price: "800" },
+  { name: "HbA1C / ACTH / Prolactin / Testosterone / Cortisol / Insulin", price: "1400/1200" },
+  { name: "Vitamin-D / AMH / TRAb / Protein-C / Protein-S", price: "3500" },
+  { name: "HB Electrophoresis / Protein Electrophoresis", price: "1600" },
+  { name: "CBC / CE / Film / Creatinine / ESR", price: "400" },
+  { name: "ICT for Dengue IgG & IgM / Dengue Ns1 Ag", price: "300" },
+  { name: "Urine R/E / Stool OBT", price: "400" },
+  { name: "Urine for Pregnancy / Platelets", price: "300" },
+  { name: "FBS / ABF / RBS / PPBS / Blood Sugar", price: "200" },
+  { name: "Allergy Profile / Gene Xpert (Mtb)", price: "6000" },
+  { name: "COVID-19 Rapid Antigen", price: "500" },
+  { name: "COVID-19 RT-PCR", price: "3500" },
+  { name: "HCV RNA (Quantitative)", price: "12000" },
+  { name: "FNAC", price: "1200" },
+];
+
 export default function DoctorsPage() {
   const specialties = Object.keys(doctors);
+  const [search, setSearch] = useState("");
+
+  const filteredTests = useMemo(() => {
+    return PATHOLOGICAL_TESTS.filter((test) => 
+      test.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [search]);
 
   return (
-    <div>
-      
-        
-    <div className="pt-1 pb-1 flex flex-col sm:flex-row items-center justify-center gap-2 bg-green-600 text-white px-4">
-       <Image src="Logo[2].png" alt="Ash Shafi Logo" width={70} height={70} className="w-12 h-12 sm:w-[70px] sm:h-[70px]" />
-      <span className="text-sm sm:text-base font-extrabold text-center">ডাক্তার এর সিরিয়াল দিতে কল করুন : </span>
-      <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
-        <a
-        href="tel:+8801346694684"
-        className="flex items-center gap-2 hover:text-green-200 transition-colors text-sm sm:text-base"
-        >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-          aria-hidden="true"
-        >
-          <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3 5a2 2 0 012-2h2.5a1 1 0 01.95.68l1 3a1 1 0 01-.25 1.02L8.2 9.8a11 11 0 005 5l1.1-1.05a1 1 0 011.02-.25l3 .95A1 1 0 0121 16.5V19a2 2 0 01-2 2A16 16 0 013 5z"
-          />
-        </svg>
-        <span>+8801346694684</span>
-        </a>
-
-        <a
-        href="tel:+8801992568186"
-        className="flex items-center gap-2 hover:text-green-200 transition-colors text-sm sm:text-base"
-        >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-          aria-hidden="true"
-        >
-          <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3 5a2 2 0 012-2h2.5a1 1 0 01.95.68l1 3a1 1 0 01-.25 1.02L8.2 9.8a11 11 0 005 5l1.1-1.05a1 1 0 011.02-.25l3 .95A1 1 0 0121 16.5V19a2 2 0 01-2 2A16 16 0 013 5z"
-          />
-        </svg>
-        <span>+8801992568186</span>
-        </a>
-      </div>
+    <div className="bg-gray-50 min-h-screen">
+      {/* Contact Header */}
+      <div className="sticky top-0 z-50 pt-1 pb-1 flex flex-col sm:flex-row items-center justify-center gap-2 bg-green-600 text-white px-4 shadow-md">
+        <Image src="/Logo[2].png" alt="Ash Shafi Logo" width={50} height={50} className="w-10 h-10" />
+        <span className="text-sm sm:text-base font-bold">সিরিয়াল দিতে কল করুন: </span>
+        <div className="flex gap-4 text-sm sm:text-base font-mono">
+          <a href="tel:+8801346694684" className="hover:underline">+8801346694684</a>
+          <a href="tel:+8801992568186" className="hover:underline">+8801992568186</a>
+        </div>
       </div>
 
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            আশ্‌-শাফি মেডিকেল সেন্টারের বিশেষজ্ঞ ডাক্তার এর তালিকা
-          </h2>
-          <Accordion
-            type="single"
-            collapsible
-            className="w-full max-w-4xl mx-auto space-y-4"
-          >
+      <div className="container mx-auto px-4 py-8">
+        {/* Doctors Section */}
+        <section className="mb-16">
+          <h1 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-green-800">
+            বিশেষজ্ঞ ডাক্তার এর তালিকা
+          </h1>
+          <Accordion type="single" collapsible className="w-full max-w-4xl mx-auto space-y-4">
             {specialties.map((specialty, index) => (
-              <AccordionItem
-                key={specialty}
-                value={`item-${index}`}
-                className="bg-white rounded-lg shadow-sm"
-              >
-                <AccordionTrigger className="px-6 py-4 text-lg text-left hover:text-green-600">
+              <AccordionItem key={specialty} value={`item-${index}`} className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+                <AccordionTrigger className="px-6 py-4 hover:bg-green-50 text-left text-lg font-semibold">
                   {specialty}
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6">
-                  <div className="space-y-4">
+                  <div className="grid gap-4 mt-4">
                     {doctors[specialty].map((doctor, dIndex) => (
-                      <Card
-                        key={dIndex}
-                        className="border-l-4 border-green-500"
-                      >
+                      <Card key={dIndex} className="border-l-4 border-green-500 shadow-none">
                         <CardContent className="p-4">
-                          <h3 className="text-xl font-semibold mb-1">
-                            {doctor.name}
-                          </h3>
-                          <p className="text-gray-700 whitespace-pre-line mb-2">
+                          <h3 className="text-xl font-bold text-gray-900 mb-2">{doctor.name}</h3>
+                          <p className="text-gray-600 whitespace-pre-line text-sm leading-relaxed">
                             {doctor.description}
                           </p>
                           {doctor.time && (
-                            <p className="text-green-600 font-medium">
-                              সময়: {doctor.time}
-                            </p>
+                            <div className="mt-3 text-green-700 font-bold text-xs bg-green-50 inline-block px-3 py-1 rounded-full">
+                              🕒 সময়: {doctor.time}
+                            </div>
                           )}
                         </CardContent>
                       </Card>
@@ -312,46 +294,70 @@ export default function DoctorsPage() {
               </AccordionItem>
             ))}
           </Accordion>
-          <div className="mt-8 flex justify-center">
-            <div className="relative">
-              <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-green-300 via-green-400 to-green-500 opacity-60 blur-xl animate-pulse" />
-              <a
-                href="https://res.cloudinary.com/dz8e6wjnx/image/upload/v1762366861/lab_test_fee_page-0001_kqtssu.jpg"
-                role="button"
-                aria-label="অ্যাপয়েন্টমেন্ট বুক করুন"
-                className="relative z-10 inline-block px-8 py-3 bg-green-600 text-white font-semibold rounded-full shadow-lg transform transition duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
-              >
-                ল্যাব টেস্ট এবং ফি সম্পর্কে বিস্তারিত জানতে এখানে ক্লিক করুন
-              </a>
+        </section>
+
+        {/* Pathological Test Section */}
+        <section className="mb-16 max-w-4xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div className="bg-green-700 p-6 text-white text-center">
+              <h2 className="text-2xl font-bold">ল্যাব টেস্ট রেট চার্ট (Pathological Tests)</h2>
+              <p className="text-green-100 text-sm mt-1">আশু-শাফি মেডিকেল সেন্টার</p>
+            </div>
+            
+            <div className="p-6">
+              <div className="relative mb-6">
+                <input 
+                  type="text" 
+                  placeholder="টেস্টের নাম দিয়ে খুঁজুন..." 
+                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <svg className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                  <thead className="border-b-2 border-gray-100">
+                    <tr>
+                      <th className="pb-4 font-bold text-gray-700">টেস্টের নাম (Test Name)</th>
+                      <th className="pb-4 font-bold text-gray-700 text-right">ফি (Tk)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-50">
+                    {filteredTests.map((test, i) => (
+                      <tr key={i} className="hover:bg-green-50 transition-colors">
+                        <td className="py-4 text-sm text-gray-600 pr-4">{test.name}</td>
+                        <td className="py-4 text-sm font-bold text-green-600 text-right">৳{test.price}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {filteredTests.length === 0 && (
+                  <p className="text-center py-10 text-gray-400 italic">দুঃখিত, কোনো টেস্ট পাওয়া যায়নি।</p>
+                )}
+              </div>
+              
             </div>
           </div>
-        </div>
-      </section>
-      
-      <PackagesSection />
-    </div>
+        </section>
 
-  );
-}
-
-
-function PackagesSection() {
-  return (
-    <section className="py-8 sm:py-12 bg-white">
-      <div className="container mx-auto px-4">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">
-          আমাদের প্যাকেজসমূহ
-        </h2>
-        <div className="flex justify-center">
-          <Image
-            src="/packages.png"
-            alt="আমাদের প্যাকেজসমূহ"
-            width={800}
-            height={800}
-            className="rounded-lg shadow-lg w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl h-auto"
-          />
-        </div>
+        {/* Packages Section */}
+        <section className="text-center">
+          <h2 className="text-2xl font-bold mb-8 text-gray-800">আমাদের হেলথ প্যাকেজসমূহ</h2>
+          <div className="inline-block bg-white p-2 rounded-2xl shadow-lg">
+            <Image
+              src="/packages.png"
+              alt="Packages"
+              width={800}
+              height={500}
+              className="rounded-xl w-full max-w-3xl h-auto"
+            />
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   );
 }
