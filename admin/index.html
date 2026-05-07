@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ash Shafi Doctor Admin</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Doctor CMS</p>
+          <h1>Manage doctors separately from the public site.</h1>
+          <p class="lede">
+            Point this admin UI at your backend service, then add, edit, or delete doctor records without touching the static website.
+          </p>
+        </div>
+        <div class="api-card">
+          <label for="apiBase">Backend API Base URL</label>
+          <div class="api-row">
+            <input id="apiBase" type="url" placeholder="http://localhost:4000" />
+            <button id="saveApiBase" type="button">Save</button>
+          </div>
+          <small>Saved in your browser. Example: https://api.yourdomain.com</small>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Doctor Form</h2>
+          <div class="actions">
+            <button id="resetForm" type="button" class="secondary">Reset</button>
+            <button id="refreshList" type="button" class="secondary">Refresh list</button>
+          </div>
+        </div>
+
+        <form id="doctorForm" class="form-grid">
+          <input type="hidden" id="doctorId" />
+
+          <label>
+            Specialty
+            <input id="specialty" name="specialty" type="text" placeholder="e.g. মেডিসিন বিশেষজ্ঞ" required />
+          </label>
+
+          <label>
+            Name
+            <input id="name" name="name" type="text" placeholder="Doctor name" required />
+          </label>
+
+          <label class="full">
+            Description
+            <textarea id="description" name="description" rows="6" placeholder="Qualifications, designation, hospital, etc." required></textarea>
+          </label>
+
+          <label>
+            Time
+            <input id="time" name="time" type="text" placeholder="Optional visiting time" />
+          </label>
+
+          <div class="full form-actions">
+            <button id="submitButton" type="submit">Create doctor</button>
+            <span id="statusText" class="status"></span>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Doctors</h2>
+          <span id="countText" class="status"></span>
+        </div>
+        <div id="doctorList" class="list"></div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

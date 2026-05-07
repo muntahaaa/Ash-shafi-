@@ -2,15 +2,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Card, CardContent } from '@/components/ui/card';
 import React from 'react';
 import Image from 'next/image';
-
-interface Doctor {
-  name: string;
-  description: string;
-  time?: string;
-}
+import type { Doctor } from '@/types/doctor';
 
 // Doctor data grouped by specialization
-const doctors: Record<string, Doctor[]> = {
+export const doctors: Record<string, Doctor[]> = {
     'মেডিসিন বিশেষজ্ঞ': [
     {
       name: 'ডা. রুম্মানা সিরাজ',
