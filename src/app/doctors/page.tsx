@@ -2,7 +2,7 @@
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent } from '@/components/ui/card';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { doctors } from '@/data/doctors';
 
@@ -11,6 +11,20 @@ import { PATHOLOGICAL_TESTS } from '@/data/tests';
 export default function DoctorsPage() {
   const specialties = Object.keys(doctors);
   const [search, setSearch] = useState("");
+  const [showScrollButton, setShowScrollButton] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Hide the floating button when we are close to the footer/bottom of the page
+      const threshold = 150; // px from bottom
+      const scrolledToBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - threshold;
+      setShowScrollButton(!scrolledToBottom);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // set initial state
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const filteredTests = useMemo(() => {
     return PATHOLOGICAL_TESTS.filter((test) => 
@@ -127,6 +141,100 @@ export default function DoctorsPage() {
             />
           </div>
         </section>
+      </div>
+
+      <footer id="doctors-footer" className="mt-16 bg-green-900 text-white py-12 border-t border-green-800">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-8 items-start mb-8">
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold mb-2">যোগাযোগ ও আমাদের ঠিকানা</h3>
+              <div className="flex items-start gap-3 text-green-100">
+                <span className="mt-1">📍</span>
+                <div>
+                  <h4 className="font-semibold text-white">ঠিকানা (Address)</h4>
+                  <p className="text-sm">2/5, 11.5 Pallabi, Mirpur, Dhaka-1216</p>
+                  <p className="text-xs text-green-200 mt-1">
+                    Google map location:{' '}
+                    <a
+                      href="https://maps.app.goo.gl/szvwv5w6SSLtaAJx7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline text-white hover:text-green-300 transition-colors"
+                    >
+                      https://maps.app.goo.gl/szvwv5w6SSLtaAJx7
+                    </a>
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3 text-green-100">
+                <span className="mt-1">✉️</span>
+                <div>
+                  <h4 className="font-semibold text-white">Email</h4>
+                  <p className="text-sm">ash.shafi.medicalcenter2025@gmail.com</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold mb-2">সামাজিক যোগাযোগ ও বুকিং</h3>
+              
+              <div className="flex items-start gap-3 text-green-100">
+                <span className="mt-1">🌐</span>
+                <div>
+                  <h4 className="font-semibold text-white">Facebook</h4>
+                  <a
+                    href="https://www.facebook.com/share/1CyYXKVfvm/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm underline text-white hover:text-green-300 transition-colors"
+                  >
+                    facebook.com/ashshafimedicalcenterbd
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 text-green-100">
+                <span className="mt-1">💬</span>
+                <div>
+                  <h4 className="font-semibold text-white">WhatsApp</h4>
+                  <a
+                    href="https://wa.me/8801992568186"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm underline text-white hover:text-green-300 transition-colors"
+                  >
+                    Chat on WhatsApp (Serial Booking: +8801992568186)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-green-800/60 pt-6 text-center text-xs text-green-300">
+            <p>&copy; {new Date().getFullYear()} Ash Shafi Medical Center. All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Floating Pinned Contact Button */}
+      <div 
+        onClick={() => document.getElementById('doctors-footer')?.scrollIntoView({ behavior: 'smooth' })}
+        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 cursor-pointer transition-all duration-300 font-bold select-none border border-green-500/30 hover:scale-105 active:scale-95 hover:shadow-green-500/20 text-sm sm:text-base ${
+          showScrollButton ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none'
+        }`}
+      >
+        <span>যোগাযোগ ও আমাদের ঠিকানা</span>
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          className="h-5 w-5 animate-bounce" 
+          fill="none" 
+          viewBox="0 0 24 24" 
+          stroke="currentColor"
+          strokeWidth={3}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
     </div>
   );

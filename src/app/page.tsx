@@ -55,7 +55,7 @@ export default function Home() {
         <AboutSection />
         <ServicesSection />
         <BranchesSection />
-      
+        <MediaSection />
         <ContactSection />
       </main>
 
