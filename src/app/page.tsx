@@ -21,6 +21,12 @@ export const metadata: Metadata = {
     'Doctor Consultation',
     'Health Checkup',
     'Medical Services',
+    'Lab test',
+    'Bisshosto chikitsha ridoy theke sheba',
+    'Ash-Shafi Medical Centre',
+    'আশ-শাফি মেডিকেল সেন্টার',
+    'আশ-শাফি মেডিকেল সেন্টার ও কনসালটেশন সেবা',
+    'বিশ্বস্ত চিকিৎসা, হৃদয় থেকে সেবা'
   ],
   openGraph: {
     title: 'Ash-Shafi Medical Centre | Diagnostic & Consultation Services',

@@ -58,12 +58,12 @@ export function ContactSection() {
                 <div>
                   <h4 className="font-semibold">Facebook</h4>
                   <a
-                  href="https://www.facebook.com/share/171MTtVdjt/"
+                  href="https://www.facebook.com/share/1CyYXKVfvm/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black underline"
                   >
-                  facebook.com/ashshafimedicalcenter
+                  facebook.com/ashshafimedicalcenterbd
                   </a>
                 </div>
                 </div>
