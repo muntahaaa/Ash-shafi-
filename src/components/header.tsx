@@ -10,7 +10,7 @@ const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'About Us' },
   { href: '#branches', label: 'Branches' },
-  { href: '#services', label: 'Specialists' },
+  { href: '#services', label: 'Doctor List' },
   { href: '#media', label: 'Media' },
   { href: '#contact', label: 'Contact' },
 ];
