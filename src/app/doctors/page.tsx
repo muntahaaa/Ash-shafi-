@@ -2,12 +2,120 @@
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card, CardContent } from '@/components/ui/card';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { MapPin, Mail } from 'lucide-react';
+import { MapPin, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
 import { doctors } from '@/data/doctors';
 
 import { PATHOLOGICAL_TESTS } from '@/data/tests';
+
+// ===== Doctor Images Data =====
+const doctorImages = [
+  '/doctors/d1.jpeg',
+  '/doctors/d2.jpeg',
+  '/doctors/d3.jpeg',
+  '/doctors/d4.jpeg',
+  '/doctors/d5.jpeg',
+  '/doctors/d6.jpeg',
+  '/doctors/d7.jpeg',
+  '/doctors/d8.jpeg',
+  '/doctors/d9.jpeg',
+  '/doctors/d10.jpeg',
+  '/doctors/d11.jpeg',
+  '/doctors/d12.jpeg',
+];
+
+// ===== Doctor Slideshow Component =====
+function DoctorSlideshow() {
+  const [index, setIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const resetTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      handleNext();
+    }, 4000);
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  const handleNext = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setIndex((prev) => (prev + 1) % doctorImages.length);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const handlePrev = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setIndex((prev) => (prev - 1 + doctorImages.length) % doctorImages.length);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  return (
+    <div 
+      className="relative w-full h-[380px] sm:h-[480px] md:h-[550px] lg:h-[600px] xl:h-[650px] overflow-hidden rounded-3xl shadow-2xl border border-green-500/10 bg-slate-950 group"
+      onMouseEnter={() => { if (timerRef.current) clearInterval(timerRef.current); }}
+      onMouseLeave={resetTimer}
+    >
+      {/* Background Ambient Glow */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent z-10 pointer-events-none" />
+
+      {/* Slide Image Rendering */}
+      <div className={`relative w-full h-full transition-opacity duration-300 ${isTransitioning ? 'opacity-30' : 'opacity-100'}`}>
+        {/* Ambient blurred version in the background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <Image
+            src={doctorImages[index]}
+            alt=""
+            fill
+            style={{ objectFit: 'cover' }}
+            className="blur-2xl opacity-40 scale-105"
+            priority
+          />
+        </div>
+        
+        {/* sharp contained image in foreground */}
+        <div className="relative w-full h-full z-10">
+          <Image
+            src={doctorImages[index]}
+            alt={`ডাক্তার প্রোফাইল ${index + 1}`}
+            fill
+            style={{ objectFit: 'contain' }}
+            sizes="(max-width: 768px) 100vw, 45vw"
+            priority
+          />
+        </div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={handlePrev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-green-700 hover:text-white text-gray-800 rounded-full p-2.5 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-20 border border-green-500/10"
+        aria-label="Previous Doctor"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+
+      <button
+        onClick={handleNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-green-700 hover:text-white text-gray-800 rounded-full p-2.5 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-20 border border-green-500/10"
+        aria-label="Next Doctor"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
+    </div>
+  );
+}
 
 export default function DoctorsPage() {
   const specialties = Object.keys(doctors);
@@ -98,34 +206,47 @@ export default function DoctorsPage() {
           <h3 className="text-xl sm:text-2xl font-bold text-center mb-8 text-green-800">
             বিশেষজ্ঞ ডাক্তার এর তালিকা
           </h3>
-          <Accordion type="single" collapsible className="w-full max-w-4xl mx-auto space-y-4">
-            {specialties.map((specialty, index) => (
-              <AccordionItem key={specialty} value={`item-${index}`} className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
-                <AccordionTrigger className="px-6 py-4 hover:bg-green-50 text-left text-lg font-semibold">
-                  {specialty}
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
-                  <div className="grid gap-4 mt-4">
-                    {doctors[specialty].map((doctor, dIndex) => (
-                      <Card key={dIndex} className="border-l-4 border-green-500 shadow-none">
-                        <CardContent className="p-4">
-                          <h3 className="text-xl font-bold text-gray-900 mb-2">{doctor.name}</h3>
-                          <p className="text-gray-600 whitespace-pre-line text-sm leading-relaxed">
-                            {doctor.description}
-                          </p>
-                          {doctor.time && (
-                            <div className="mt-3 text-green-700 font-bold text-xs bg-green-50 inline-block px-3 py-1 rounded-full">
-                              🕒 সময়: {doctor.time}
-                            </div>
-                          )}
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start max-w-7xl mx-auto">
+            {/* Left Column: Specialties Accordion */}
+            <div className="w-full lg:col-span-7 space-y-4 order-2 lg:order-1">
+              <Accordion type="single" collapsible className="w-full space-y-4">
+                {specialties.map((specialty, index) => (
+                  <AccordionItem key={specialty} value={`item-${index}`} className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <AccordionTrigger className="px-6 py-4 hover:bg-green-50 text-left text-lg font-bold text-gray-900">
+                      {specialty}
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6 pt-2">
+                      <div className="grid gap-4">
+                        {doctors[specialty].map((doctor, dIndex) => (
+                          <Card key={dIndex} className="border-l-4 border-green-500 bg-gray-50/50 shadow-none hover:bg-gray-50 transition-colors">
+                            <CardContent className="p-5">
+                              <h3 className="text-xl font-bold text-gray-900 mb-2">{doctor.name}</h3>
+                              <p className="text-gray-600 whitespace-pre-line text-sm leading-relaxed font-medium">
+                                {doctor.description}
+                              </p>
+                              {doctor.time && (
+                                <div className="mt-3 text-green-700 font-bold text-xs bg-green-50 inline-block px-3 py-1 rounded-full border border-green-200/50">
+                                  🕒 সময়: {doctor.time}
+                                </div>
+                              )}
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            {/* Right Column: Doctor Profiles Slideshow */}
+            <div className="w-full lg:col-span-5 order-1 lg:order-2">
+              <div className="relative p-1 bg-gradient-to-tr from-green-500/20 via-transparent to-green-500/5 rounded-[32px]">
+                <DoctorSlideshow />
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Pathological Test Section */}
@@ -133,7 +254,7 @@ export default function DoctorsPage() {
           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
             <div className="bg-green-700 p-6 text-white text-center">
               <h2 className="text-2xl font-bold">ল্যাব টেস্ট রেট চার্ট (Pathological Tests)</h2>
-              <p className="text-green-100 text-sm mt-1">আশু-শাফি মেডিকেল সেন্টার</p>
+              <p className="text-green-100 text-sm mt-1">আশ-শাফি মেডিকেল সেন্টার</p>
             </div>
             
             <div className="p-6">

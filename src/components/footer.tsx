@@ -14,7 +14,6 @@ const quickLinks = [
   { href: '#about', label: 'About Us' },
   { href: '#services', label: 'Specialists' },
   { href: '#branches', label: 'Branches' },
-  { href: '#media', label: 'Media' },
   { href: '#contact', label: 'Contact' },
 ];
 
