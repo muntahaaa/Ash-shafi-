@@ -1,10 +1,12 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
+import { SITE_URL } from '@/data/clinic';
 
 export const metadata: Metadata = {
-  title: 'Ash Shafi Medical Center',
-  description: 'Providing excellent healthcare services.',
+  metadataBase: new URL(SITE_URL),
+  title: 'Ash-Shafi Medical Center',
+  description: 'Specialist doctor consultations and diagnostic services in Pallabi, Mirpur, Dhaka.',
 };
 
 export default function RootLayout({

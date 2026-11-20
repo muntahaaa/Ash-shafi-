@@ -1,12 +1,11 @@
 "use client";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Card, CardContent } from '@/components/ui/card';
 import React, { useState, useEffect, useRef } from 'react';
-import { doctors } from '@/data/doctors';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { DoctorListPanel } from '@/components/doctor-list-panel';
+import { DiagnosticPackagesSection } from '@/components/diagnostic-packages-section';
 
 // ===== Doctor Images Data =====
 const doctorImages = [
@@ -22,6 +21,12 @@ const doctorImages = [
   '/doctors/d10.jpeg',
   '/doctors/d11.jpeg',
   '/doctors/d12.jpeg',
+  '/doctors/d13.png',
+  '/doctors/d14.jpeg',
+  '/doctors/d15.jpeg',
+  '/doctors/d16.jpeg',
+  '/doctors/d18.jpeg',
+  '/doctors/d19.jpeg',
 ];
 
 // ===== Doctor Slideshow Component =====
@@ -120,8 +125,6 @@ function DoctorSlideshow() {
 
 // ===== Main ServicesSection Component =====
 const ServicesSection = () => {
-  const specialties = Object.keys(doctors);
-
   return (
     <section id="services" className="py-20 md:py-28 bg-gradient-to-b from-background via-muted/20 to-background">
       <div className="container mx-auto px-4">
@@ -140,38 +143,7 @@ const ServicesSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start max-w-7xl mx-auto mb-16">
           {/* Left Column: Specialty Accordions (7 Columns on Large Screens) */}
           <div className="w-full lg:col-span-7 space-y-4 order-2 lg:order-1 animate-in fade-in slide-in-from-left-8 duration-1000">
-            <Accordion type="single" collapsible className="w-full space-y-4">
-              {specialties.map((specialty, index) => (
-                <AccordionItem 
-                  key={specialty} 
-                  value={`item-${index}`} 
-                  className="bg-card rounded-2xl border border-primary/10 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
-                >
-                  <AccordionTrigger className="px-6 py-5 hover:bg-primary/[0.03] text-left text-lg font-bold text-foreground">
-                    {specialty}
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-6 pt-2">
-                    <div className="grid gap-4">
-                      {doctors[specialty].map((doctor, dIndex) => (
-                        <Card key={dIndex} className="border-l-4 border-primary bg-muted/30 shadow-none hover:bg-muted/50 transition-colors">
-                          <CardContent className="p-5">
-                            <h3 className="text-xl font-bold text-foreground mb-2">{doctor.name}</h3>
-                            <p className="text-foreground/80 whitespace-pre-line text-sm leading-relaxed font-medium">
-                              {doctor.description}
-                            </p>
-                            {doctor.time && (
-                              <div className="mt-3 text-primary font-bold text-xs bg-primary/10 inline-block px-3.5 py-1.5 rounded-full border border-primary/20">
-                                🕒 সময়: {doctor.time}
-                              </div>
-                            )}
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <DoctorListPanel />
           </div>
 
           {/* Right Column: Doctor Profiles Slideshow (5 Columns on Large Screens) */}
@@ -181,6 +153,8 @@ const ServicesSection = () => {
             </div>
           </div>
         </div>
+
+        <DiagnosticPackagesSection />
 
         {/* CTA Link to Test Packages */}
         <div className="flex justify-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">

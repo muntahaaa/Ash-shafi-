@@ -1,11 +1,10 @@
 "use client";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Card, CardContent } from '@/components/ui/card';
 import { useMemo, useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { MapPin, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
-import { doctors } from '@/data/doctors';
+import { DoctorListPanel } from '@/components/doctor-list-panel';
+import { DiagnosticPackagesSection } from '@/components/diagnostic-packages-section';
 
 import { PATHOLOGICAL_TESTS } from '@/data/tests';
 
@@ -118,7 +117,6 @@ function DoctorSlideshow() {
 }
 
 export default function DoctorsPage() {
-  const specialties = Object.keys(doctors);
   const [search, setSearch] = useState("");
   const [showScrollButton, setShowScrollButton] = useState(true);
 
@@ -210,34 +208,7 @@ export default function DoctorsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start max-w-7xl mx-auto">
             {/* Left Column: Specialties Accordion */}
             <div className="w-full lg:col-span-7 space-y-4 order-2 lg:order-1">
-              <Accordion type="single" collapsible className="w-full space-y-4">
-                {specialties.map((specialty, index) => (
-                  <AccordionItem key={specialty} value={`item-${index}`} className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                    <AccordionTrigger className="px-6 py-4 hover:bg-green-50 text-left text-lg font-bold text-gray-900">
-                      {specialty}
-                    </AccordionTrigger>
-                    <AccordionContent className="px-6 pb-6 pt-2">
-                      <div className="grid gap-4">
-                        {doctors[specialty].map((doctor, dIndex) => (
-                          <Card key={dIndex} className="border-l-4 border-green-500 bg-gray-50/50 shadow-none hover:bg-gray-50 transition-colors">
-                            <CardContent className="p-5">
-                              <h3 className="text-xl font-bold text-gray-900 mb-2">{doctor.name}</h3>
-                              <p className="text-gray-600 whitespace-pre-line text-sm leading-relaxed font-medium">
-                                {doctor.description}
-                              </p>
-                              {doctor.time && (
-                                <div className="mt-3 text-green-700 font-bold text-xs bg-green-50 inline-block px-3 py-1 rounded-full border border-green-200/50">
-                                  🕒 সময়: {doctor.time}
-                                </div>
-                              )}
-                            </CardContent>
-                          </Card>
-                        ))}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              <DoctorListPanel />
             </div>
 
             {/* Right Column: Doctor Profiles Slideshow */}
@@ -248,6 +219,8 @@ export default function DoctorsPage() {
             </div>
           </div>
         </section>
+
+        <DiagnosticPackagesSection />
 
         {/* Pathological Test Section */}
         <section className="mb-16 max-w-4xl mx-auto">

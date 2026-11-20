@@ -6,14 +6,23 @@ import ServicesSection from '@/components/services-section';
 import { BranchesSection } from '@/components/branches-section'
 import { ContactSection } from '@/components/contact-section'
 import { Footer } from '@/components/footer'
+import { JsonLd } from '@/components/json-ld'
+import { getClinicJsonLd, SITE_URL } from '@/data/clinic'
 
 // ===== SEO Metadata (this automatically renders <head> tags) =====
 export const metadata: Metadata = {
-  title: 'Ash-Shafi Medical Centre | Diagnostic & Consultation Services',
+  title: 'Ash-Shafi Medical Center | Specialist Doctors in Pallabi, Mirpur',
   description:
-    'Ash-Shafi Medical Centre offers professional medical diagnostics, X-ray, ultrasonography, and expert doctor consultations — all under one roof.',
+    'Find specialist doctors and trusted diagnostic services at Ash-Shafi Medical Center, serving Pallabi and Mirpur 11, 11.5 and 12 in Dhaka.',
+  alternates: { canonical: '/' },
   keywords: [
     'Ash-Shafi Medical Centre',
+    'Ash Shafi Medical Center Mirpur',
+    'specialist doctor in Pallabi',
+    'doctor in Mirpur 11',
+    'doctor in Mirpur 12',
+    'medical center in Pallabi',
+    'hospital in Mirpur',
     'Medical Diagnostics',
     'X-ray',
     'Ultrasonography',
@@ -28,11 +37,11 @@ export const metadata: Metadata = {
     'বিশ্বস্ত চিকিৎসা, হৃদয় থেকে সেবা'
   ],
   openGraph: {
-    title: 'Ash-Shafi Medical Centre | Diagnostic & Consultation Services',
+    title: 'Ash-Shafi Medical Center | Specialist Doctors in Pallabi, Mirpur',
     description:
-      'Accurate diagnostics, X-ray, ultrasonography, and expert consultations — experience quality healthcare at Ash-Shafi Medical Centre.',
-    url: 'https://www.ashshafimedical.com',
-    siteName: 'Ash-Shafi Medical Centre',
+      'Specialist doctor consultations and diagnostic services for Pallabi, Mirpur 11, 11.5 and Mirpur 12, Dhaka.',
+    url: SITE_URL,
+    siteName: 'Ash-Shafi Medical Center',
     type: 'website',
   },
   
@@ -48,8 +57,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={getClinicJsonLd()} />
       <Header />
-      <main class-as="flex-grow">
+      <main className="flex-grow">
         <HeroSection />
         <AboutSection />
         <ServicesSection />

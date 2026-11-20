@@ -10,10 +10,13 @@ export function HeroSection() {
         {/* Header Text */}
         <div className="text-center mb-8 animate-fade-in">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-headline mb-4">
-            Welcome to Ash Shafi Medical Center
+            Ash-Shafi Medical Center in Pallabi, Mirpur
           </h1>
             <p className="text-xl md:text-2xl font-bold text-black max-w-2xl mx-auto px-4">
             বিশ্বস্ত চিকিৎসা, হৃদয় থেকে সেবা
+            </p>
+            <p className="mx-auto mt-4 max-w-3xl px-4 text-sm leading-6 text-foreground/75 md:text-base">
+              Specialist doctor consultations, diagnostic tests and medical services for patients across Mirpur 11, Mirpur 11.5, Mirpur 12 and Pallabi, Dhaka.
             </p>
         </div>
 
